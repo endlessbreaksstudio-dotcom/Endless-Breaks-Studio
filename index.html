@@ -146,6 +146,7 @@
   .btn-ghost:hover{ background:color-mix(in srgb, var(--hero-text) 10%, transparent); }
   .btn-outline{ background:transparent; color:var(--accent); border-color:var(--accent); }
   .btn-outline:hover{ background:color-mix(in srgb, var(--accent) 10%, transparent); }
+  .btn-sm{ padding:7px 16px; font-size:.82rem; }
 
   /* ---------- Hero ---------- */
   .hero{
@@ -225,7 +226,8 @@
   .spotlight h2{ margin-top:12px; font-size:clamp(1.9rem,3vw,2.4rem); }
   .spotlight .desc{ margin-top:16px; color:var(--text-muted); font-size:1.05rem; max-width:46ch; }
   .spotlight .price{ margin-top:18px; font-weight:700; font-size:1.35rem; color:var(--accent-strong); }
-  .spotlight .btn{ margin-top:28px; }
+  .spotlight .price .ship-note{ font-weight:400; font-size:.9rem; color:var(--text-muted); }
+  .spotlight .btn-row{ display:flex; flex-wrap:wrap; gap:14px; margin-top:28px; }
 
   /* ---------- Brand banner ---------- */
   .banner{
@@ -304,6 +306,7 @@
   .tile .cap{ margin-top:16px; font-weight:600; font-size:.98rem; }
   .tile .cap-sub{ margin-top:3px; font-size:.88rem; color:var(--text-muted); }
   .tile .cap-price{ margin-top:4px; font-size:.9rem; font-weight:600; color:var(--accent-strong); }
+  .tile .buy-btn{ margin-top:12px; }
   .gallery-note{ margin-top:40px; color:var(--text-muted); font-size:.95rem; }
 
   /* ---------- Detail lightbox ---------- */
@@ -468,7 +471,8 @@
         </button>
         <p class="cap">Low Tide</p>
         <p class="cap-sub">Wall decor · 8 × 20 in</p>
-        <p class="cap-price">$175</p>
+        <p class="cap-price">$135</p>
+        <a class="btn btn-primary btn-sm buy-btn" href="https://square.link/u/Mwdm30HM" target="_blank" rel="noopener">Buy now</a>
       </div>
       <div class="tile">
         <button type="button" class="tile-frame" data-detail="waveplatter-detail.webp" data-cap="Whitewash" data-sub="Wall decor · 8 × 20 in" data-price="$175">
@@ -477,7 +481,8 @@
         </button>
         <p class="cap">Whitewash</p>
         <p class="cap-sub">Wall decor · 8 × 20 in</p>
-        <p class="cap-price">$175</p>
+        <p class="cap-price">$135</p>
+        <a class="btn btn-primary btn-sm buy-btn" href="https://square.link/u/8lQsh58W" target="_blank" rel="noopener">Buy now</a>
       </div>
       <div class="tile">
         <button type="button" class="tile-frame" data-detail="deepblue-detail.webp" data-cap="Indigo Swell" data-sub="Wall decor · 8 × 20 in" data-price="$175">
@@ -486,7 +491,8 @@
         </button>
         <p class="cap">Indigo Swell</p>
         <p class="cap-sub">Wall decor · 8 × 20 in</p>
-        <p class="cap-price">$175</p>
+        <p class="cap-price">$135</p>
+        <a class="btn btn-primary btn-sm buy-btn" href="https://square.link/u/doqm2ghw" target="_blank" rel="noopener">Buy now</a>
       </div>
       <div class="tile">
         <button type="button" class="tile-frame" data-detail="cuttingboard-detail.webp" data-cap="Driftline" data-sub="Kitchen &amp; counter · 8 × 13 in" data-price="$85">
@@ -496,6 +502,7 @@
         <p class="cap">Driftline</p>
         <p class="cap-sub">Kitchen &amp; counter · 8 × 13 in</p>
         <p class="cap-price">$85</p>
+        <a class="btn btn-primary btn-sm buy-btn" href="https://square.link/u/itPfhwXV" target="_blank" rel="noopener">Buy now</a>
       </div>
       <div class="tile">
         <button type="button" class="tile-frame" data-detail="canvas-detail.webp" data-cap="Horizon Break" data-sub="Wall art · 20 × 16 in" data-price="$500">
@@ -505,9 +512,10 @@
         <p class="cap">Horizon Break</p>
         <p class="cap-sub">Wall art · 20 × 16 in</p>
         <p class="cap-price">$500</p>
+        <a class="btn btn-primary btn-sm buy-btn" href="https://square.link/u/xfVlZ9zK" target="_blank" rel="noopener">Buy now</a>
       </div>
     </div>
-    <p class="gallery-note">Pictured are pieces already poured and for sale, one of one, never repeated. Your piece is made fresh to order in the size, shape, and palette you want. Tap any piece for a closer look at the pour.</p>
+    <p class="gallery-note">Pictured are pieces already poured and for sale, one of one, never repeated, and ship for a flat $35. Your piece is made fresh to order in the size, shape, and palette you want. Tap any piece for a closer look at the pour.</p>
   </div>
 </section>
 
@@ -520,8 +528,11 @@
       <p class="overline">Currently featured</p>
       <h2>Indigo Swell</h2>
       <p class="desc">The deepest pour yet: layers of indigo built up until the water reads as real depth, with a whitewash break caught mid-crash across the front. Poured on a textured acrylic base with a resin pour, finished with the wood's own live edge left bare along one side.</p>
-      <p class="price">$175</p>
-      <a class="btn btn-primary" href="mailto:Endlessbreaksstudio@gmail.com?subject=Indigo%20Swell%20inquiry">Inquire about this piece</a>
+      <p class="price">$135 <span class="ship-note">+ $35 shipping</span></p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="https://square.link/u/doqm2ghw" target="_blank" rel="noopener">Buy now</a>
+        <a class="btn btn-outline" href="mailto:Endlessbreaksstudio@gmail.com?subject=Indigo%20Swell%20inquiry">Ask a question</a>
+      </div>
     </div>
   </div>
 </section>

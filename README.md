@@ -4,22 +4,25 @@ A one-page site for Endless Breaks Studio (ocean-inspired resin art). Plain HTML
 
 **Live at:** https://endlessbreaksstudio-dotcom.github.io/Endless-Breaks-Studio/
 
-## What broke, and why this version fixes it
+## Buying pieces — Square checkout
 
-The version uploaded earlier had images sorted into a `photos/` folder and a `photos/detail/` subfolder. GitHub's web **Add file → Upload files** drag-and-drop doesn't reliably recreate that folder structure — depending on the browser, files dragged from inside a subfolder can land flat at the repo root instead of inside their folder. On top of that, the thumbnail and detail version of each piece shared the same filename (e.g. both were called `surfboard.webp`, one meant for `photos/`, one for `photos/detail/`), so once flattened, one silently overwrote the other. The result: `index.html` was asking for `photos/surfboard.webp`, but no such path existed anymore — hence no images.
+Each of the 5 gallery pieces (and the Indigo Swell spotlight) now has a **Buy now** button that opens a Square-hosted checkout page: item price + a flat $35 shipping fee, with the buyer's shipping address collected. These are Square **Payment Links**, created directly against the studio's Square account:
 
-This version has **no subfolders at all** — every file sits at the repo root with a unique name (detail crops are named things like `surfboard-detail.webp` instead of reusing `surfboard.webp`). That makes the upload immune to this problem regardless of browser or how the files get dragged in.
+| Piece | Price | Checkout link |
+|---|---|---|
+| Low Tide | $135 | https://square.link/u/Mwdm30HM |
+| Whitewash | $135 | https://square.link/u/8lQsh58W |
+| Indigo Swell | $135 | https://square.link/u/doqm2ghw |
+| Driftline | $85 | https://square.link/u/itPfhwXV |
+| Horizon Break | $500 | https://square.link/u/xfVlZ9zK |
 
-## Fix it — step by step
+**When a piece sells**, since these are one-of-one and never repeated, ask Claude to pull that piece from the gallery (or mark it "Sold") so people can't buy something that's gone — the Square link itself doesn't know inventory status, so this has to be done on the site manually.
 
-1. Go to your repo on GitHub (`endlessbreaksstudio-dotcom` → `Endless-Breaks-Studio`).
-2. **Delete what's there now**, so nothing stale is left behind: select all the files in the repo's file list (click the first file, then shift-click the last, or use the checkbox at the top of the file list if your view has one), and delete them. If GitHub doesn't offer bulk-select in your view, it's fine to skip this — the new upload will overwrite same-named files either way, and any leftover `photos` folder with broken contents just won't be linked from anywhere.
-3. Click **Add file → Upload files**.
-4. Open this zip's `github-repo` folder on your computer and drag in **every file inside it individually selected** (select all of them at once — Ctrl+A on Windows or Cmd+A on Mac inside the folder — then drag that whole selection in one motion). There should be no subfolders this time, so there's nothing that can get flattened wrong: `index.html`, all the `.webp` files, `favicon-32.png`, `favicon-180.png`, `robots.txt`, `sitemap.xml` — 19 files total, all landing directly at the repo root.
-5. Scroll down and click **Commit changes**.
-6. Give it a minute or two, then reload the live site and hard-refresh (Ctrl+Shift+R / Cmd+Shift+R) to bypass any cached broken version. Images should now appear everywhere: hero, story, gallery thumbnails, spotlight, banner, and contact sections, plus the lightbox when you click a gallery piece.
+**To change a price or the shipping fee**, ask Claude — it can update the existing Square payment link (price and shipping are editable after creation) and refresh the displayed price on the site to match, without needing to regenerate the link. You can also see and manage these links directly in the Square Dashboard under Payments → Payment Links.
 
-Nothing about the domain or Google Search Console setup needs to be redone — same URL, same verification tag, still intact in `index.html`.
+## What broke earlier, and why this version is upload-proof
+
+An earlier version organized images into a `photos/` folder and a `photos/detail/` subfolder. GitHub's web **Add file → Upload files** drag-and-drop doesn't reliably recreate that folder structure — files from inside a subfolder can land flat at the repo root instead. On top of that, the thumbnail and detail version of each piece shared the same filename, so once flattened, one silently overwrote the other. This version has **no subfolders at all** — every file sits at the repo root with a unique name — so that failure mode can't happen again.
 
 ## Files
 
@@ -30,18 +33,22 @@ Nothing about the domain or Google Search Console setup needs to be redone — s
 - `favicon-32.png`, `favicon-180.png` — browser-tab icon and the icon used when someone saves the site to their phone's home screen
 - `robots.txt`, `sitemap.xml` — tell search engines the site exists and it's OK to crawl it
 
+## Uploading changes
+
+Since everything's flat with no subfolders, updating the live site is always the same: open this folder, select every file inside it (Ctrl+A / Cmd+A), drag the whole selection into your GitHub repo via **Add file → Upload files**, and click **Commit changes**. GitHub Pages redeploys automatically within a minute. A hard refresh (Ctrl+Shift+R / Cmd+Shift+R) clears any cached old version in your own browser.
+
 ## Getting found on Google
 
-Already done for this URL — see the notes from your earlier setup. If you ever move to a custom domain, that will need re-verifying in Search Console as a separate property; ask Claude to rebuild this folder with the new domain first.
+Already set up for this URL — Search Console verification and the sitemap submission are done. If you ever move to a custom domain, that counts as a new property and needs re-verifying; ask Claude to rebuild this folder with the new domain first.
 
 ## Point a real domain at it (optional)
 
 1. **Buy a domain** (e.g. `endlessbreaksstudio.com`) from a registrar — Cloudflare Registrar, Namecheap, and Squarespace Domains are common, usually $10-20/year.
-2. In the repo's **Settings → Pages**, enter the domain under **Custom domain** and save — GitHub creates a `CNAME` file in the repo automatically.
-3. At your registrar, add the DNS records GitHub's docs specify: four `A` records for the bare domain, or one `CNAME` record for `www`. The Pages settings page shows a "DNS check" status once records are correct (a few minutes to 24 hours).
+2. In the repo's **Settings → Pages**, enter the domain under **Custom domain** and save — GitHub creates a `CNAME` file automatically.
+3. At your registrar, add the DNS records GitHub's docs specify: four `A` records for the bare domain, or one `CNAME` record for `www`. The Pages settings page shows a "DNS check" status once records are correct.
 4. Once the DNS check passes, turn on **Enforce HTTPS**.
-5. Ask Claude to rebuild this folder with the new domain as `LIVE_URL`, then re-upload `index.html`, `robots.txt`, and `sitemap.xml`, and re-verify the new URL prefix in Search Console.
+5. Ask Claude to rebuild this folder with the new domain as `LIVE_URL`, then re-upload and re-verify the new URL prefix in Search Console. Also ask Claude to update the 5 Square payment links' redirect-after-payment URL to the new domain — that's a separate live update on Square's side, not something baked into these static files.
 
 ## Making future edits
 
-Edit `index.html` directly (all CSS and JS are inline in the file), or ask Claude to make the change and re-export this folder. Since everything's flat now, re-uploading is just: select all the files in the folder, drag them into **Add file → Upload files**, commit. GitHub Pages redeploys automatically within a minute.
+Edit `index.html` directly (all CSS and JS are inline in the file), or ask Claude to make the change and re-export this folder, then upload per "Uploading changes" above.
